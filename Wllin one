@@ -1,0 +1,117 @@
+#!/bin/bash
+clear
+
+# 🔶 Orange header lines
+header=(
+"-----------------------------------------------------------"
+"           IDX VPS COMMAND BY shubham_legend"
+"-----------------------------------------------------------"
+)
+
+# 🟣 Menu options (now including 14)
+menu=(
+"1 : Basic Install"
+"2 : IDX 24/7"
+"3 : Pterodactyl Panel by Jishnu"
+"4 : Pterodactyl Panel Assets"
+"5 : VM INSTALLER BY HOPING BOY"
+"6 : PLAYIT"
+"7 : HOSTNAME CHANGER"
+"8 : FAST FETCH"
+"9 : ONE COMMAND PANEL INSTALLER BY JISHNU"
+"10 : IPv4 Fetch"
+"11 : DDoS Protection"
+"12 : Security Plus"
+"13 : Skyport Panel"
+"14 : Skyport Wing"
+"0 : Exit"
+)
+
+# 🔹 URLs for scripts
+DDOS_URL="https://gist.githubusercontent.com/fahmibinamin/5969d340f3b41101771bdce3076d6708/raw/50bbde55562415ea0f0c5cbddb9ac11720c41b0c/gistfile1.txt"
+SECURITY_URL="https://gist.githubusercontent.com/fahmibinamin/71713f412ced5b9cf580c2f127605e82/raw/3cf23a2c9ca6059728dcbd24790a9c5b033bdbde/gistfile1.txt"
+SKYPORT_URL="https://gist.githubusercontent.com/fahmibinamin/66107c93ec78f5f53760f1583ab390b9/raw/082f73a05e4dfe035ef04bfd5685e4f9776ea429/gistfile1.txt"
+SKYWING_URL="https://gist.githubusercontent.com/fahmibinamin/068f7a34dba2aea6e1d65b37a57ff621/raw/aba59919f7f2b92c2a3f8264f4b730d329c1bb01/gistfile1.txt"
+
+# 🔹 Function to show UI with animation
+show_ui() {
+  clear
+  for line in "${header[@]}"; do
+    echo -e "\e[38;5;208;1m$line\e[0m"
+    sleep 0.08
+  done
+  echo ""
+  for option in "${menu[@]}"; do
+    echo -e "\e[35m$option\e[0m"
+    sleep 0.05
+  done
+  echo ""
+}
+
+# 🔹 Loop menu
+while true; do
+  show_ui
+  read -p $'\e[38;5;208mEnter number to run: \e[0m' choice
+  clear
+  case $choice in
+    1)
+      apt update && apt install -y neofetch
+      ;;
+    2)
+      bash <(curl -s https://raw.githubusercontent.com/rredefined/Vm-Manager/main/neverOFF)
+      ;;
+    3)
+      bash <(curl -s https://ptero.jishnu.fun)
+      ;;
+    4)
+      bash <(curl -s https://raw.githubusercontent.com/rredefined/ptero/main/assets.sh)
+      ;;
+    5)
+      bash <(curl -s https://vps1.jishnu.fun)
+      ;;
+    6)
+      wget https://github.com/playit-cloud/playit-agent/releases/download/v0.15.26/playit-linux-amd64
+      chmod +x playit-linux-amd64
+      ./playit-linux-amd64
+      ;;
+    7)
+      bash <(curl -s https://raw.githubusercontent.com/rredefined/proxmox/main/name.sh)
+      ;;
+    8)
+      bash <(curl -s https://raw.githubusercontent.com/rredefined/Vm-Manager/main/fastfetch.sh)
+      ;;
+    9)
+      bash <(curl -s https://codes.jishnu.fun)
+      ;;
+    10)
+      echo -e "\e[36mFetching IPv4 information...\e[0m"
+      bash <(curl -s https://raw.githubusercontent.com/rredefined/proxmox/main/ipvfetch.sh)
+      ;;
+    11)
+      echo -e "\e[35mRunning DDoS Protection Installer...\e[0m"
+      curl -s "$DDOS_URL" | bash
+      ;;
+    12)
+      echo -e "\e[35mRunning Security Plus Installer...\e[0m"
+      curl -fsSL "$SECURITY_URL" | bash
+      ;;
+    13)
+      echo -e "\e[35mInstalling Skyport Panel...\e[0m"
+      bash <(curl -sSL "$SKYPORT_URL")
+      ;;
+    14)
+      echo -e "\e[35mInstalling Skyport Wing...\e[0m"
+      bash <(curl -sSL "$SKYWING_URL")
+      ;;
+    0)
+      echo -e "\e[32mExiting... Bye!\e[0m"
+      exit 0
+      ;;
+    *)
+      echo -e "\e[31mInvalid option!\e[0m"
+      sleep 1
+      ;;
+  esac
+  echo -e "\e[33mPress Enter to return to menu...\e[0m"
+  read -r
+done
